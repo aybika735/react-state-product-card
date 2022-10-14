@@ -2,7 +2,7 @@ import { useState } from "react";
 function App(props) {
   const [btn, setBtn] = useState(false);
   const [text, setText] = useState("Добавить в корзину");
-  const [isempty, setIsempty] = useState(false)
+  const [isempty, setIsempty] = useState(false);
 
   const [formvalid, setFormvalid] = useState(false);
 
@@ -11,31 +11,26 @@ function App(props) {
       setBtn(true);
       setText("уже в корзине");
       setFormvalid(!formvalid);
-
-      
-     
     }
   };
-  const handleClicktwo = (e) =>{
-    if(e.target.className === 'btn-red'){
+  const handleClicktwo = (e) => {
+    if (e.target.className === "btn-red") {
       setText("Добавить в корзину");
       setFormvalid(!formvalid);
-    setBtn(false);
-    
-     
+      setBtn(false);
     }
-  }
-  
-const handleClickdetalis = (e) =>{
-if(e.target.className === 'btn_detalis'){
-  setIsempty(true);
-}
-}
-const handledeleted =(e)=>{
-  if(e.target.className === 'deleted'){
-setIsempty(false);
-  }
-}
+  };
+
+  const handleClickdetalis = (e) => {
+    if (e.target.className === "btn_detalis") {
+      setIsempty(true);
+    }
+  };
+  const handledeleted = (e) => {
+    if (e.target.className === "deleted") {
+      setIsempty(false);
+    }
+  };
   return (
     <div className="App">
       {props.products.map((product) => {
@@ -49,9 +44,27 @@ setIsempty(false);
                 <div className="card-inf">
                   <div className="card-name">{product.name}</div>
                   <div className="inf-button">
-                    <button className="btn_detalis" onClick={(e) => handleClickdetalis(e)}>Детали</button>
-                    {isempty && <div className="display"><div  className='detalis'> loreem ipsum dolor sit amet, consectetur adipisicing elit.
-                Animi, dignissimos.loreem ipsum dolor sit amet</div><span onClick={(e)=>handledeleted(e)} className="deleted">❌</span></div>}
+                    <button
+                      className="btn_detalis"
+                      onClick={(e) => handleClickdetalis(e)}
+                    >
+                      Детали
+                    </button>
+                    {isempty && (
+                      <div className="display">
+                        <div className="detalis">
+                          {" "}
+                          loreem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Animi, dignissimos.loreem ipsum dolor sit amet
+                        </div>
+                        <span
+                          onClick={(e) => handledeleted(e)}
+                          className="deleted"
+                        >
+                          ❌
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="card-price">$ {product.price} </div>
@@ -67,11 +80,14 @@ setIsempty(false);
                   className={formvalid ? "disabled" : "btn"}
                   disabled={formvalid}
                   onClick={(e) => handleClick(e)}
-               
                 >
                   {text}
                 </button>
-                {btn ? <div  onClick={(e) => handleClicktwo(e)} className='btn-red'>удалить из корзины</div>:null}
+                {btn ? (
+                  <div onClick={(e) => handleClicktwo(e)} className="btn-red">
+                    удалить из корзины
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
